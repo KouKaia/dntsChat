@@ -108,7 +108,7 @@ func writeToLog(str string) {
 }
 
 func readLog() string {
-	// 打开文件
+	// open file
 	file, err := os.Open("log.txt")
 	if err != nil {
 		fmt.Println(err)
@@ -116,21 +116,21 @@ func readLog() string {
 	}
 	defer file.Close()
 
-	// 计算文件总行数
+	// count all line
 	scanner := bufio.NewScanner(file)
 	lineCount := 0
 	for scanner.Scan() {
 		lineCount++
 	}
 
-	// 计算倒数20行的起始行号和结束行号
+	// read last 20 line
 	startLine := lineCount - 20
 	if startLine < 0 {
 		startLine = 0
 	}
 	endLine := lineCount - 1
 
-	// 重新打开文件
+	// reopen log
 	file, err = os.Open("log.txt")
 	if err != nil {
 		fmt.Println(err)
@@ -138,7 +138,7 @@ func readLog() string {
 	}
 	defer file.Close()
 
-	// 读取文件，获取倒数20行的内容
+	// read last 20 line
 	scanner = bufio.NewScanner(file)
 	var lines []string
 	lineNum := 0
@@ -152,6 +152,6 @@ func readLog() string {
 		}
 	}
 	result := strings.Join(lines, "\n")
-	// 返回倒数20行的内容，每行之间用"\n"分隔
+	// return 20 line with ¥n
 	return result
 }

@@ -89,7 +89,7 @@ func handleClient(client Client) {
 }
 
 func writeToLog(str string) {
-	// 打开文件，如果不存在则创建文件，如果文件已存在则将数据追加到文件末尾
+	// open file,and add line in last,if not exist then create
 	file, err := os.OpenFile("log.txt", os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		fmt.Println(err)
@@ -97,7 +97,7 @@ func writeToLog(str string) {
 	}
 	defer file.Close()
 
-	// 写入字符串到文件
+	// write strems on file
 	_, err = fmt.Fprint(file, str)
 	if err != nil {
 		fmt.Println(err)
